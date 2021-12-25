@@ -63,7 +63,7 @@ describe('Testing the Not Found endpoint', function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, request.get('/image?WrongParameter=300&AnotherWrongParameter=100&AnotherFalseParameter=encenadaport.jpg')];
+                case 0: return [4 /*yield*/, request.get('/api/image?WrongParameter=300&AnotherWrongParameter=100&AnotherFalseParameter=encenadaport.jpg')];
                 case 1:
                     response = _a.sent();
                     expect(response.notFound).toBeFalsy();

@@ -1,11 +1,8 @@
 import { promises as fsPromises, existsSync as checkExistence } from 'fs'
 
-const sharp = require('sharp')
+import { originalImages, savedImages } from '../paths'
 
-const imageDir =
-  '/media/isaac/Tech/All/Backend Career/Advanced Web ND/1. Backend Development with NodeJs/Project/project/images'
-const originalImages = `${imageDir}/original`
-const savedImages = `${imageDir}/saved`
+const sharp = require('sharp')
 
 const resizeImage = async (width: number, height: number, fileName: string): Promise<Buffer> => {
   const imagePath = `${savedImages}/${width}_${height}_${fileName}.jpg`

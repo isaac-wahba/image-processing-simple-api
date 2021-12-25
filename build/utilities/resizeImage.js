@@ -37,29 +37,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
+var paths_1 = require("../paths");
 var sharp = require('sharp');
-var imageDir = '/media/isaac/Tech/All/Backend Career/Advanced Web ND/1. Backend Development with NodeJs/Project/project/images';
-var originalImages = "".concat(imageDir, "/original");
-var savedImages = "".concat(imageDir, "/saved");
 var resizeImage = function (width, height, fileName) { return __awaiter(void 0, void 0, void 0, function () {
     var imagePath, imageExist, imageToResize, imageResized;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                imagePath = "".concat(savedImages, "/").concat(width, "_").concat(height, "_").concat(fileName, ".jpg");
+                imagePath = "".concat(paths_1.savedImages, "/").concat(width, "_").concat(height, "_").concat(fileName, ".jpg");
                 if (!(0, fs_1.existsSync)(imagePath)) return [3 /*break*/, 2];
                 return [4 /*yield*/, fs_1.promises.readFile(imagePath)];
             case 1:
                 imageExist = _a.sent();
                 return [2 /*return*/, imageExist];
-            case 2: return [4 /*yield*/, fs_1.promises.readFile("".concat(originalImages, "/").concat(fileName))];
+            case 2: return [4 /*yield*/, fs_1.promises.readFile("".concat(paths_1.originalImages, "/").concat(fileName))];
             case 3:
                 imageToResize = _a.sent();
                 console.log({ imageToResize: imageToResize, width: width, height: height });
                 return [4 /*yield*/, sharp(imageToResize).resize(width, height).toBuffer()];
             case 4:
                 imageResized = _a.sent();
-                return [4 /*yield*/, fs_1.promises.writeFile("".concat(savedImages, "/").concat(width, "_").concat(height, "_").concat(fileName, ".jpg"), imageResized)];
+                return [4 /*yield*/, fs_1.promises.writeFile("".concat(paths_1.savedImages, "/").concat(width, "_").concat(height, "_").concat(fileName, ".jpg"), imageResized)];
             case 5:
                 _a.sent();
                 return [2 /*return*/, imageResized];

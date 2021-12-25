@@ -40,22 +40,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var fs_1 = require("fs");
 var resizeImage_1 = __importDefault(require("../utilities/resizeImage"));
+var paths_1 = require("../paths");
 var routes = express_1.default.Router();
 routes.get('/image', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var width, height, fileName, imageResized;
+    var width, height, fileName, imagePath, imageResized;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 width = parseInt(req.query.width, 10);
+                if (!width || width < 0) {
+                    return [2 /*return*/, res.status(400).json({ status: 400, message: 'Width must be a valid positive number' })];
+                }
                 height = parseInt(req.query.height, 10);
+                if (!height || height < 0) {
+                    return [2 /*return*/, res.status(400).json({ status: 400, message: 'height must be a valid positive number' })];
+                }
                 fileName = req.query.fileName;
+                imagePath = "".concat(paths_1.originalImages, "/").concat(fileName);
+                if (!(0, fs_1.existsSync)(imagePath)) {
+                    return [2 /*return*/, res
+                            .status(400)
+                            .json({ status: 400, message: 'fileName must be a name of an existing file' })];
+                }
                 return [4 /*yield*/, (0, resizeImage_1.default)(width, height, fileName)];
             case 1:
                 imageResized = _a.sent();
                 res.set('Content-Type', 'image/jpeg');
-                res.send(imageResized);
-                return [2 /*return*/];
+                return [2 /*return*/, res.send(imageResized)];
         }
     });
 }); });

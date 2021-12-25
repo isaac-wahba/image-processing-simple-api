@@ -1,4 +1,5 @@
 import supertest from 'supertest'
+
 import app from '../index'
 import resizeImage from '../utilities/resizeImage'
 // create a request object
@@ -13,7 +14,7 @@ describe('Test endpoint response', () => {
 describe('Testing the Not Found endpoint', () => {
   it('Test the Not Found endpoint', async () => {
     const response = await request.get(
-      '/image?WrongParameter=300&AnotherWrongParameter=100&AnotherFalseParameter=encenadaport.jpg'
+      '/api/image?WrongParameter=300&AnotherWrongParameter=100&AnotherFalseParameter=encenadaport.jpg'
     )
     expect(response.notFound).toBeFalsy()
   })
