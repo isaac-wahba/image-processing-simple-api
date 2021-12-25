@@ -12,6 +12,7 @@ Testing has been done with Jasmine.
 ## API call example:
 
 * call the api through : `http://localhost:3000/api/image?width=300&height=50&fileName=fjord.jpg`
+* Feel free to change the width & height, and to choose any included photo in the images/original directory.
 
 
 
